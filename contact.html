@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Abhimantrit AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="static/css/contact.css">
+</head>
+<body>
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="spinner-container">
+      <div class="spinner-ring"></div>
+      <div class="spinner-ring"></div>
+      <div class="spinner-ring"></div>
+      <div class="spinner">
+        <i class="fas fa-om"></i>
+      </div>
+    </div>
+    <div class="preloader-text">Opening Sacred Communication</div>
+    <div class="preloader-subtext">Connecting Divine Energies...</div>
+  </div>
+  
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-om"></i>
+        </div>
+        <div class="logo-text">Abhimantrit <span> AI</span></div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="anushthanam.html"><i class="fas fa-praying-hands"></i> Anushthanam</a></li>
+          <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+          <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Contact Information -->
+    <section class="section">
+      <h2 class="section-title">Get In Touch</h2>
+      
+      <p class="contact-intro">
+        Have questions about our spiritual AI services? Want to learn more about Anushthanam rituals? 
+        Our team is here to assist you on your spiritual journey. Reach out to us through any of the 
+        following channels:
+      </p>
+      
+      <div class="contact-layout">
+        <!-- Contact Methods Section -->
+        <div class="contact-info-section">
+          <div class="contact-cards-grid">
+            <a href="tel:+7898396007" target="_blank">
+              <div class="contact-card">
+                <div class="contact-icon">
+                  <i class="fas fa-phone"></i>
+                </div>
+                <h3>Call Us</h3>
+                <p>+91 7898396007</p>
+              </div>
+            </a>
+            
+            <a href="mailto:info@abhimantrit.shop" target="_blank">
+              <div class="contact-card">
+                <div class="contact-icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email</h3>
+                <p>info@abhimantrit.shop</p>
+              </div>
+            </a>
+            
+            <a href="https://abhimantrit.shop" target="_blank">
+              <div class="contact-card">
+                <div class="contact-icon">
+                  <i class="fas fa-globe"></i>
+                </div>
+                <h3>Website</h3>
+                <p>abhimantrit.shop</p>
+              </div>
+            </a>
+          </div>
+          
+          <div class="social-section">
+            <h3>Connect With Us</h3>
+            <div class="social-links">
+              <a href="https://www.facebook.com/abhimantrit.shop?mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.instagram.com/abhimantrit.shop?igsh=bW14ZHBpcm8xbHln" target="_blank"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.youtube.com/@Abhimantrit_Products" target="_blank"><i class="fab fa-youtube"></i></a>
+              <a href="https://wa.me/7898396007" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Contact Form Section -->
+        <div class="contact-form-section">
+          <div class="form-container">
+            <h2>Send a Message</h2>
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" class="form-control" placeholder="How can we help you?" required></textarea>
+              </div>
+              
+              <div style="text-align: center;">
+                <button type="submit" class="submit-btn">
+                  Send Message <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </form>
+            
+            <div id="message-container"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>Need Spiritual Guidance?</h2>
+      <p>Our AI spiritual assistant is available 24/7 to answer your questions and provide personalized guidance.</p>
+      <a href="index.html" class="cta-button">Chat with AI Guide <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>Abhimantrit AI - Your Spiritual Companion</p>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="anushthanam.html">anushthanam</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <p class="copyright">© 2025 Abhimantrit AI. All rights reserved</p>
+    </div>
+  </footer>
+  
+  <script>
+    // Preloader functionality
+    window.addEventListener('load', function() {
+      const preloader = document.querySelector('.preloader');
+      
+      // Add a small delay to ensure everything is fully loaded
+      setTimeout(function() {
+        preloader.classList.add('hidden');
+        
+        // Remove preloader from DOM after animation completes
+        setTimeout(function() {
+          preloader.style.display = 'none';
+        }, 800); // Matches the transition duration
+      }, 1000); // Simulating loading time
+    });
+    
+    // Form submission script
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.querySelector('.submit-btn');
+      const originalBtnText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      submitBtn.disabled = true;
+      
+      // Get form data
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const message = document.getElementById('message').value;
+      
+      // Create JSON object
+      const formData = {
+        name: name,
+        phone: phone,
+        message: message
+      };
+      
+      try {
+        const response = await fetch('https://snapsphere.fun/contact/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+        
+        const messageContainer = document.getElementById('message-container');
+        
+        if (response.ok) {
+          // Success message
+          messageContainer.textContent = 'Your message has been sent successfully! We will contact you soon.';
+          messageContainer.className = 'message-success';
+          messageContainer.style.display = 'block';
+          
+          // Reset form
+          document.getElementById('contactForm').reset();
+        } else {
+          // Error message
+          const errorData = await response.json();
+          messageContainer.textContent = `Error: ${errorData.message || 'Failed to send message. Please try again later.'}`;
+          messageContainer.className = 'message-error';
+          messageContainer.style.display = 'block';
+        }
+      } catch (error) {
+        // Network error
+        const messageContainer = document.getElementById('message-container');
+        messageContainer.textContent = 'Network error. Please check your connection and try again.';
+        messageContainer.className = 'message-error';
+        messageContainer.style.display = 'block';
+        
+        console.error('Error submitting form:', error);
+      } finally {
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+          const messageContainer = document.getElementById('message-container');
+          messageContainer.style.display = 'none';
+        }, 5000);
+      }
+    });
+  </script>
+</body>
+</html>
