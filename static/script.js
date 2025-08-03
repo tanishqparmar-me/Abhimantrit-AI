@@ -18,8 +18,8 @@
 
     // Initialize Botpress Webchat with responsive configuration
     window.botpress.init({
-      botId: "57e3e004-dc0d-4f72-8df3-d6c454d88f1c",
-      clientId: "f82504db-d35c-4dc0-b887-79a3c0390373",
+      botId: "1b972ffc-1208-40b2-a74f-152c31b83090",
+      clientId: "07004550-56af-440c-a7c6-3a02f9b3b9af",
       selector: "#webchat",
       configuration: {
         version: "v1",
