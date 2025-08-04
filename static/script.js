@@ -17,7 +17,8 @@
   
 
     // Initialize Botpress Webchat with responsive configuration
-    window.botpress.init({
+    document.addEventListener("DOMContentLoaded", function () {
+   window.botpressWebChat.init({
       botId: "1b972ffc-1208-40b2-a74f-152c31b83090",
       clientId: "07004550-56af-440c-a7c6-3a02f9b3b9af",
       selector: "#webchat",
@@ -47,37 +48,30 @@
         radius: 1,
         feedbackEnabled: false,
         footer: "[By - Abhimantrit™](https://abhimantrit.shop)",
-        // Responsive styling for mobile
         styleSheet: `
           @media (max-width: 767px) {
             .bpw-header-title {
               font-size: 18px !important;
             }
-            
             .bpw-header-subtitle {
               font-size: 14px !important;
             }
-            
             .bpw-chat-bubble {
               font-size: 16px !important;
               line-height: 1.5 !important;
             }
-            
             .bpw-keyboard-quick_reply {
               padding: 10px 12px !important;
               font-size: 14px !important;
             }
-            
             .bpw-composer {
               min-height: 60px !important;
             }
           }
-          
           @media (max-width: 480px) {
             .bpw-header-container {
               padding: 12px 15px !important;
             }
-            
             .bpw-chat-container {
               padding-bottom: 70px !important;
             }
@@ -85,14 +79,16 @@
         `
       }
     });
-    
+
     // Handle chat opening
-    document.getElementById('open-chat').addEventListener('click', function() {
+    document.getElementById('open-chat').addEventListener('click', function () {
       document.getElementById('webchat').style.visibility = 'visible';
       window.botpress.open();
     });
-    
+
     // Handle orientation changes
-    window.addEventListener('orientationchange', function() {
+    window.addEventListener('orientationchange', function () {
       window.location.reload();
     });
+  });
+
