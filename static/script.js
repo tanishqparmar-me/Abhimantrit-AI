@@ -28,7 +28,7 @@
     "fontFamily": "ibm",
     "radius": 1,
     "feedbackEnabled": false,
-    "footer": "[⚡ by Botpress](https://botpress.com/?from=webchat)"
+    "footer": "[Abhimantrit™ AI Sahayak](https://abhimantrit.shop)"
   },
   "clientId": "07004550-56af-440c-a7c6-3a02f9b3b9af",
   "selector": "#webchat"
