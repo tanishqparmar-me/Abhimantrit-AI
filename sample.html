@@ -1,73 +1,1020 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js"></script>
-    <style>
-      #webchat .bpWebchat {
-        position: unset;
-        width: 100%;
-        height: 100%;
-        max-height: 100%;
-        max-width: 100%;
-      }
-/*     
-      #webchat .bpFab {
-        display: none;
-      } */
-    </style>
-</head>
-<body>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Abhimantrit AI Sahayak - Official Assistant Sahayak of Abhimantrit</title>
+  <meta name="description" content="Abhimantrit AI is your 24x7 spiritual guide for mantra, puja, and authentic abhimantrit products. Ask anything on Abhimantrit – Trusted AI for Hindu rituals and spiritual solutions">
+  <meta name="keywords" content="Abhimantrit, Abhimantrit AI, Abhimantrit.com, Spiritual AI, Hindu AI assistant, mantra puja chatbot, puja help AI, dharmik chatbot, Abhimantrit India, Abhimantrit shop AI">
+  <meta name="author" content="Abhimantrit™">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Abhimantrit AI Sahayak – Trusted AI for Puja, Products, and Mantras">
+  <meta property="og:description" content="Abhimantrit AI Sahayak helps you with puja, mantra, remedies & products. Powered by Abhimantrit.com.">
+  <meta property="og:image" content="image/icon.jpg">
+  <meta property="og:url" content="https://abhimantrit.ai/">
+  <meta property="og:type" content="website">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Abhimantrit AI – Trusted AI by Abhimantrit.shop">
+  <meta name="twitter:description" content="Ask anything about mantra, puja or Abhimantrit products. Now powered by AI!">
+  <meta name="twitter:image" content="image/icon.jpg">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset and base styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     
+    :root {
+      --primary: #f76b15;
+      --primary-dark: #d45a0f;
+      --secondary: #8e44ad;
+      --light: #f8f9fa;
+      --dark: #2c3e50;
+      --text: #333333;
+      --gold: #f1c40f;
+      --primary-dark: #ff8c00;
+      --primary: #ff9501;
+      --primary-light: #ffad56;
+      --primary-extra-light: #fdd8b5;
+      --accent: #fbbf24;
+      --accent-dark: #7c2d12;
+      --dark-bg-1: #2e1f0b;
+      --dark-bg-2: #6e4114;
+      --light-bg: #f8f5ff;
+      --text-light: #e2d9f3;
+      --text-light-secondary: #c4b5fd;
+      --text-dark: #333;
+      --text-gray: #555;
+      --text-light-gray: #666;
+      --white: #ffffff;
+      --off-white: #f8f5ff;
+      --light-purple-bg: #e9d5ff;
+    }
+    
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
+      color: var(--text);
+    }
 
-<!-- In your <head> tag -->
+    /* Preloader overlay */
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--dark-bg-1), var(--primary-dark), var(--dark-bg-1));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+    }
+    
+    .preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .spinner-container {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .spinner {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      animation: spin 3s linear infinite;
+    }
+    
+    .spinner i {
+      font-size: 80px;
+      color: var(--text-light);
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    }
+    
+    .spinner-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: var(--primary-light);
+      animation: spin 1.5s linear infinite;
+    }
+    
+    .spinner-ring:nth-child(2) {
+      width: 120%;
+      height: 120%;
+      border-top-color: var(--primary-extra-light);
+      animation: spin 2s linear infinite reverse;
+    }
+    
+    .spinner-ring:nth-child(3) {
+      width: 140%;
+      height: 140%;
+      border-top-color: var(--primary-extra-light);
+      animation: spin 2.5s linear infinite;
+    }
+    
+    .preloader-text {
+      margin-top: 30px;
+      color: var(--text-light);
+      font-size: 1.2rem;
+      text-align: center;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
+    .preloader-subtext {
+      margin-top: 10px;
+      color: var(--text-light-secondary);
+      font-size: 0.9rem;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
-<!-- Put this on your page BEFORE the script below -->
-<div id="webchat" style="width: 500px; height: 500px;"></div>
+    /* Landing Page Container */
+    .landing-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 20px 0px 20px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-<!-- In your <body> tag -->
-<script>
-  window.botpress.on("webchat:ready", () => {
-    window.botpress.open();
-  });
-  window.botpress.init({
-  "botId": "1b972ffc-1208-40b2-a74f-152c31b83090",
-  "configuration": {
-    "version": "v1",
-    "composerPlaceholder": "Apna sawal puche ",
-    "botName": "Abhimantrit",
-    "botDescription": "Abhimantrit chat-bot ",
-    "fabImage": "https://files.bpcontent.cloud/2025/08/02/05/20250802053323-VE5R9YMB.jpeg",
-    "website": {
-      "title": "https://www.abhimantrit.shop/",
-      "link": "https://www.abhimantrit.shop/"
-    },
-    "email": {
-      "title": "info@abhimantrit.shop",
-      "link": "info@abhimantrit.shop"
-    },
-    "phone": {
-      "title": "+91 7898396007",
-      "link": "+91 7898396007"
-    },
-    "termsOfService": {},
-    "privacyPolicy": {},
-    "color": "#f76b15",
-    "variant": "solid",
-    "headerVariant": "glass",
-    "themeMode": "light",
-    "fontFamily": "ibm",
-    "radius": 1,
-    "feedbackEnabled": false,
-    "footer": "[⚡ by Botpress](https://botpress.com/?from=webchat)"
-  },
-  "clientId": "07004550-56af-440c-a7c6-3a02f9b3b9af",
-  "selector": "#webchat"
-});
-</script>
+    /* Header Styles */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      margin-bottom: 20px;
+    }
 
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
 
+    .logo {
+      width: 110px;
+      height: 110px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .logo img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .logo-text {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: 0.5px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .logo-text span {
+      color: var(--primary);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
+
+    .hero-content {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .hero h1 {
+      font-size: 3.4rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: var(--dark);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+      position: relative;
+    }
+
+    .hero h1 span::after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background: rgba(247, 107, 21, 0.2);
+      z-index: -1;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      color: #555;
+      max-width: 600px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 15px 35px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(247, 107, 21, 0.3);
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(247, 107, 21, 0.4);
+    }
+
+    .hero-image {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .ai-assistant {
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .ai-assistant-label {
+      position: absolute;
+      bottom: -40px;
+      background: white;
+      padding: 10px 25px;
+      border-radius: 30px;
+      font-weight: 600;
+      color: var(--primary);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      animation: float 3s ease-in-out infinite;
+      font-size: 1.2rem;
+      white-space: nowrap;
+    }
+
+    .ai-assistant i {
+      color: white;
+      font-size: 120px;
+      transition: transform 0.3s;
+    }
+
+    .ai-assistant:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+
+    .ai-assistant:hover i {
+      transform: rotate(10deg);
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(247, 107, 21, 0.5); }
+      70% { box-shadow: 0 0 0 20px rgba(247, 107, 21, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(247, 107, 21, 0); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* Features Section */
+    .features {
+      margin: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      color: var(--dark);
+      position: relative;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(247, 107, 21, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .feature-icon i {
+      font-size: 36px;
+      color: var(--primary);
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    .feature-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      margin: 80px 0;
+      background: rgba(142, 68, 173, 0.05);
+      padding: 60px 20px;
+      border-radius: 20px;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .testimonial-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 80px;
+      color: rgba(247, 107, 21, 0.1);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .testimonial-content {
+      margin-top: 20px;
+      font-style: italic;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      margin-right: 15px;
+    }
+
+    .author-info h4 {
+      color: var(--dark);
+    }
+
+    .author-info p {
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 60px 20px 30px;
+      margin-top: auto;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-column h3 {
+      font-size: 1.5rem;
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--primary);
+    }
+
+    .footer-column p {
+      color: #bbb;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .contact-info {
+      list-style: none;
+    }
+
+    .contact-info li {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+      color: #bbb;
+    }
+    .contact-info li a{
+      color: #bbb;
+    }
+
+    .contact-info i {
+      color: var(--primary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 40px;
+      margin-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #bbb;
+      font-size: 0.9rem;
+    }
+
+    /* Chatbot overlay styling */
+    #chatbot-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    #chatbot-overlay.visible {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .chatbot-container {
+      width: 90%;
+      max-width: 400px;
+      height: 80vh;
+      max-height: 700px;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      transform: translateY(20px);
+      transition: transform 0.4s ease;
+    }
+    
+    #chatbot-overlay.visible .chatbot-container {
+      transform: translateY(0);
+    }
+    
+    .chat-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .chat-header h3 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .chat-header h3 i {
+      font-size: 1.4rem;
+    }
+    
+    .close-chat {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+      font-size: 1.2rem;
+    }
+    
+    .close-chat:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    #webchat {
+      flex-grow: 1;
+      min-height: 0;
+      border-radius: 0 0 20px 20px;
+      overflow: hidden;
+    }
+    
+    @media (max-width: 600px) {
+      .chatbot-container {
+        width: 95%;
+        height: 85vh;
+        max-height: none;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .ai-assistant {
+        width: 250px;
+        height: 250px;
+      }
+      
+      .ai-assistant i {
+        font-size: 90px;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      
+      nav ul {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .logo {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .logo img {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .logo-text {
+        font-size: 1.4rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="spinner-container">
+      <div class="spinner-ring"></div>
+      <div class="spinner-ring"></div>
+      <div class="spinner-ring"></div>
+      <div class="spinner">
+        <i class="fas fa-om"></i>
+      </div>
+    </div>
+    <div class="preloader-text">Abhimantrit AI Sahayak </div>
+    <div class="preloader-subtext">Abhimantrit AI Sahayak apka swagat karta hai..</div>
+  </div>
+
+  <!-- Landing Page Content -->
+  <div class="landing-container">
+    <header>
+      <div class="logo-container">
+        <div class="logo">
+          <img src="https://files.bpcontent.cloud/2025/08/02/05/20250802053323-VE5R9YMB.jpeg" alt="Abhimantrit Logo">
+        </div>
+        <div class="logo-text"><span style="color: black;">Abhimantrit</span><span style="color: orange;"> AI Sahayak</span></div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="#"><i class="fas fa-praying-hands"></i> Anushthanam</a></li>
+          <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+          <li><a href="#"><i class="fas fa-phone"></i> Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Asli Abhimantrit samgriyo ki sahi jankari <br><span>Hamare AI Sahayak Dwara →</span></h1>
+        <p>Adhyatma jagat me abhimantrit AI sahayak apki sahayta ke liya tatpar hai. Abhimantrit se sambandhit koi bhi prashna puch sakte hai. <br> <br><b> Hamari Website ka anusaran kare..</b></p>
+        <a href="https://abhimantrit.shop" target="_blank"><button class="cta-button">Abhimantrit.shop</button></a>
+      </div>
+      <div class="hero-image">
+        <div class="ai-assistant" id="open-chat">
+          <i class="fas fa-robot"></i>
+          <div class="ai-assistant-label">Prashn kare</div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="features">
+      <h2 class="section-title">Our Divine Features</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <h3>Dharmik AI Chatbot</h3>
+          <p>Abhimantrit AI chatbot se aap apne dharmik sawalon ke jawab pa sakte ho – jaise mantra, puja vidhi ya upay – sab kuch instantly aur trusted sources se!</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-book"></i>
+          </div>
+          <h3>Product Guidance & Usage Help</h3>
+          <p>Kisi bhi Abhimantrit product ka naam likhiye, aur AI aapko batayega uska prayog, vidhi, labh aur sahi samay — bina kisi wait ke, 24x7 seva ke saath.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-hands-praying"></i>
+          </div>
+          <h3>Bhakti aur Samasya ka Samadhan</h3>
+          <p>Chahe aapko shanti chahiye ho, grah dosh ho ya safalta ka marg — bas apni problem likho, aur AI aapko sahi product, mantra aur upay recommend karega turant.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <h2 class="section-title">User Experiences</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            "Abhimantrit AI Sahayak ne meri puja vidhi ke bare me bilkul sahi margdarshan diya. Ab main har din apni puja sahi tarah se kar pati hoon."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">R</div>
+            <div class="author-info">
+              <h4>Rajshree Sharma</h4>
+              <p>Housewife, Mumbai</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            "Mantra jaap ke liye sahi samay aur vidhi jan ne ke liye main hamesha AI Sahayak ka upyog karta hoon. Yeh meri roz ki sadhna ka avashyak hissa ban gaya hai."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">A</div>
+            <div class="author-info">
+              <h4>Anand Verma</h4>
+              <p>Software Engineer, Bangalore</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            "Abhimantrit se liye gaye upchar ke prayog ke bare me poochne par AI Sahayak ne turant sahi jankari di. Isne meri samasya ka samadhan karne me madad ki."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">P</div>
+            <div class="author-info">
+              <h4>Priya Patel</h4>
+              <p>Teacher, Ahmedabad</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Abhimantrit AI</h3>
+          <p>Your digital spiritual companion, providing guidance based on ancient wisdom and modern technology.</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/abhimantrit.shop?igsh=bW14ZHBpcm8xbHln" target="_blank" ><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/abhimantrit.shop?mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.youtube.com/@Abhimantrit_Products" target="_blank"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="contact-info">
+            <li><a href="#"><i class="fas fa-arrow-right"></i> Home</a></li>
+            <li><a href="#"><i class="fas fa-arrow-right"></i> Anushthanam</a></li>
+            <li><a href="#"><i class="fas fa-arrow-right"></i> About-Us</a></li>
+            <li><a href="#"><i class="fas fa-arrow-right"></i> Contact-us</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Contact Us</h3>
+          <ul class="contact-info">
+            <li><i class="fas fa-map-marker-alt"></i> Indore, Madhya Pradesh, India</li>
+            <li><i class="fas fa-phone"></i> +91 7898396007</li>
+            <li><i class="fas fa-envelope"></i> info@abhimantrit.shop</li>
+            <li><i class="fas fa-globe"></i> https://www.abhimantrit.shop/</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        &copy; 2025 Abhimantrit™ AI. All rights reserved. 
+      </div>
+    </footer>
+  </div>
+
+  <!-- Chatbot overlay container -->
+  <div id="chatbot-overlay">
+    <div class="chatbot-container">
+      <div class="chat-header">
+        <h3><i class="fas fa-robot"></i> Abhimantrit AI Sahayak</h3>
+        <button class="close-chat" id="close-chat">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div id="webchat"></div>
+    </div>
+  </div>
+
+  <!-- Botpress Script -->
+  <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js"></script>
+  <script>
+    // Initialize Botpress webchat
+    window.botpress.init({
+      "botId": "1b972ffc-1208-40b2-a74f-152c31b83090",
+      "configuration": {
+        "version": "v1",
+        "composerPlaceholder": "Apna sawal puche ",
+        "botName": "Abhimantrit",
+        "botDescription": "Abhimantrit chat-bot ",
+        "fabImage": "https://files.bpcontent.cloud/2025/08/02/05/20250802053323-VE5R9YMB.jpeg",
+        "website": {
+          "title": "https://www.abhimantrit.shop/",
+          "link": "https://www.abhimantrit.shop/"
+        },
+        "email": {
+          "title": "info@abhimantrit.shop",
+          "link": "info@abhimantrit.shop"
+        },
+        "phone": {
+          "title": "+91 7898396007",
+          "link": "+91 7898396007"
+        },
+        "termsOfService": {},
+        "privacyPolicy": {},
+        "color": "#f76b15",
+        "variant": "solid",
+        "headerVariant": "glass",
+        "themeMode": "light",
+        "fontFamily": "ibm",
+        "radius": 1,
+        "feedbackEnabled": false,
+        "footer": "[⚡ by Botpress](https://botpress.com/?from=webchat)"
+      },
+      "clientId": "07004550-56af-440c-a7c6-3a02f9b3b9af",
+      "selector": "#webchat"
+    });
+
+    // Chatbot open/close functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const openChatBtn = document.getElementById('open-chat');
+      const closeChatBtn = document.getElementById('close-chat');
+      const chatbotOverlay = document.getElementById('chatbot-overlay');
+      
+      // Open chatbot
+      openChatBtn.addEventListener('click', function() {
+        chatbotOverlay.classList.add('visible');
+      });
+      
+      // Close chatbot
+      closeChatBtn.addEventListener('click', function() {
+        chatbotOverlay.classList.remove('visible');
+      });
+      
+      // Close chatbot when clicking outside the container
+      chatbotOverlay.addEventListener('click', function(e) {
+        if (e.target === chatbotOverlay) {
+          chatbotOverlay.classList.remove('visible');
+        }
+      });
+    });
+
+    // Preloader functionality
+    window.addEventListener('load', function () {
+      const preloader = document.querySelector('.preloader');
+
+      // Add a small delay to ensure everything is fully loaded
+      setTimeout(function () {
+        preloader.classList.add('hidden');
+
+        // Remove preloader from DOM after animation completes
+        setTimeout(function () {
+          preloader.style.display = 'none';
+        }, 800); // Matches the transition duration
+      }, 1500); // Simulating loading time
+    });
+  </script>
 </body>
 </html>

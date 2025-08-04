@@ -29,7 +29,6 @@
   <link rel="preload" href="static/style.css" as="style">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="static/style.css">
-  <script src="static/script.js"></script>
 
   <!-- Structured Data: Organization -->
   <script type="application/ld+json">
@@ -603,17 +602,17 @@
       z-index: 1000;
     }
 
-    #webchat .bpFab {
+    /* #webchat .bpFab {
       display: none !important;
-    }
-
+    } */
+/* 
     #webchat .bpWebchat {
       position: unset;
       width: 100%;
       height: 100%;
       max-width: 100%;
       max-height: 100%;
-    }
+    } */
 
     /* Responsive Design */
     @media (max-width: 900px) {
@@ -848,6 +847,7 @@
     
       </div>
       <div class="hero-image">
+
         <div class="ai-assistant" id="open-chat">
           <i class="fas fa-robot"></i>
           <div class="ai-text">Prashn kare</div>
@@ -926,8 +926,6 @@
 
   </div>
 <div id="webchat" style="width: 100%; height: 100vh;"></div>
-
-
 
 <script>
   window.botpress.on("webchat:ready", () => {
