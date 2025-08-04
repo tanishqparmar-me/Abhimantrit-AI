@@ -560,8 +560,9 @@
     /* Responsive Design */
     @media (max-width: 900px) {
       .hero {
-        flex-direction: column;
+        flex-direction: column-reverse;
         text-align: center;
+        
       }
       
       .hero-content {
