@@ -3,9 +3,9 @@
   "botId": "1b972ffc-1208-40b2-a74f-152c31b83090",
   "configuration": {
     "version": "v1",
-    "composerPlaceholder": "Apna sawal puche ",
+    "composerPlaceholder": "Apna sawal Likhe..",
     "botName": "Abhimantrit",
-    "botDescription": "Abhimantrit chat-bot ",
+    "botDescription": "Abhimantrit Ai Chat",
     "fabImage": "https://files.bpcontent.cloud/2025/08/02/05/20250802053323-VE5R9YMB.jpeg",
     "website": {
       "title": "https://www.abhimantrit.shop/",
